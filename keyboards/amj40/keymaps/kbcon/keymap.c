@@ -8,12 +8,14 @@
 #define _LOWER 1
 #define _RAISE 2
 #define _ADJUST 3
+#define _COMBO 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
   ADJUST,
+  COMBO,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -71,11 +73,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
+    /* Adjust Layer
+     * ,-----------------------------------------------------------.
+     * |RSET| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10| Del|
+     * |-----------------------------------------------------------|
+     * |Caps | F11| F12| AU+| AU-| AG=|AGSW| BL*| BL+| BL-|        |
+     * |-----------------------------------------------------------|
+     * |        | NK+| NK-|RGB*|    |    |    |    |     |    |    |
+     * |-----------------------------------------------------------|
+     * |SYSSLP|     |     |           |             |   |    |Comb*|
+     * `-----------------------------------------------------------'
+     */
     [_ADJUST] = LAYOUT( \
-        RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_DEL, \
-        KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC, _______,  \
-        _______, NK_ON,   NK_OFF,  RGB_TOG,  RGB_MOD,  RGB_HUI,  RGB_HUD,  RGB_SAI,  RGB_SAD,  RGB_VAI,  RGB_VAD, \
-        KC_SYSTEM_SLEEP, _______, _______, _______, _______, _______, _______, _______ \
+        RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
+        KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC,  _______, \
+        _______, NK_ON,   NK_OFF,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, \
+        KC_SYSTEM_SLEEP, _______, _______, _______, _______, _______, _______, TG(_COMBO) \
+        ),
+
+    /* Combo Pinyin Layer
+     * ,-----------------------------------------------------------.
+     * |    |    |    |    |    |    |    |    |    |    |    |    |
+     * |-----------------------------------------------------------|
+     * |T/fn1|    |    |    |    |    |    |    |    |    | Ent/fn0|
+     * |-----------------------------------------------------------|
+     * |        |    |    |    |    |    |    |    |     |    |    |
+     * |-----------------------------------------------------------|
+     * |      |     |     |   Space   |      ;      |   |    |     |
+     * `-----------------------------------------------------------'
+     */
+    [_COMBO] = LAYOUT( \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        LT(_RAISE, KC_TAB), _______, _______, _______, _______, _______, _______, _______, _______, _______, LT(_LOWER, KC_ENT), \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, KC_SPC,  KC_SCLN, _______, _______, _______ \
         ),
 
 };
@@ -109,6 +140,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_ADJUST);
       } else {
         layer_off(_ADJUST);
+      }
+      return false;
+      break;
+    case COMBO:
+      if (record->event.pressed) {
+        layer_on(_COMBO);
+      } else {
+        layer_off(_COMBO);
       }
       return false;
       break;
