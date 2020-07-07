@@ -9,6 +9,7 @@
 #define _RAISE 2
 #define _ADJUST 3
 #define _COMBO 4
+#define _MAC 5
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -16,6 +17,7 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   COMBO,
+  MAC,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -27,14 +29,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . | /? |
      * |-----------------------------------------------------------|
-     * | LCtl | LAlt| LGui|  spc fn0  |  spc fn1    |fn2|RAlt|RCtl |
+     * | LCtl | LGui| LAlt|  spc fn0  |  spc fn1    |fn2|RAlt|RCtl |
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC,\
         KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT,\
         KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), \
-        KC_LCTL, KC_LALT, KC_LGUI, LT(_LOWER, KC_SPC),LT(_RAISE, KC_SPC),LT(_ADJUST, KC_LGUI), KC_RALT, KC_RCTL \
+        KC_LCTL, KC_LGUI, KC_LALT, LT(_LOWER, KC_SPC),LT(_RAISE, KC_SPC),LT(_ADJUST, KC_LGUI), KC_RALT, KC_RCTL \
         ),
 
     /* Lower Layer
@@ -81,14 +83,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        | NK+| NK-|RGB*|    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * |SYSSLP|     |     |           |             |   |    |Comb*|
+     * |SYSSLP|     | Mac*|           |             |   |    |Comb*|
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
         RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
         KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC,  _______, \
         _______, NK_ON,   NK_OFF,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, \
-        KC_SYSTEM_SLEEP, _______, _______, _______, _______, _______, _______, TG(_COMBO) \
+        KC_SYSTEM_SLEEP, _______, TG(_MAC), _______, _______, _______, _______, TG(_COMBO) \
         ),
 
     /* Combo Pinyin Layer
@@ -107,6 +109,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LT(_RAISE, KC_TAB), _______, _______, _______, _______, _______, _______, _______, _______, _______, LT(_LOWER, KC_ENT), \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, KC_SPC,  KC_SCLN, _______, _______, _______ \
+        ),
+
+    /* Mac Layer
+     * ,-----------------------------------------------------------.
+     * |    |    |    |    |    |    |    |    |    |    |    |    |
+     * |-----------------------------------------------------------|
+     * |     |    |    |    |    |    |    |    |    |    |        |
+     * |-----------------------------------------------------------|
+     * |        |    |    |    |    |    |    |    |     |    |    |
+     * |-----------------------------------------------------------|
+     * |      | LAlt| LGui|           |             |   |    |     |
+     * `-----------------------------------------------------------'
+     */
+    [_MAC] = LAYOUT( \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_LALT, KC_LGUI, _______, _______, _______, _______, _______ \
         ),
 
 };
@@ -148,6 +168,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_COMBO);
       } else {
         layer_off(_COMBO);
+      }
+      return false;
+      break;
+    case MAC:
+      if (record->event.pressed) {
+        layer_on(_MAC);
+      } else {
+        layer_off(_MAC);
       }
       return false;
       break;
