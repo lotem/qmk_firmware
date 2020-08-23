@@ -2,9 +2,9 @@
 #include "version.h"
 
 #define BASE 0 // default layer
-#define STENO 5 // stenotype
-#define SYMB 6 // symbols
-#define MDIA 7 // media keys
+#define STENO 1 // stenotype
+#define SYMB 2 // symbols
+#define MDIA 3 // media keys
 
 
 enum custom_keycodes {
