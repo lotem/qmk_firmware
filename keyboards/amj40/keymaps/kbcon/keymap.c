@@ -73,20 +73,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Adjust Layer
      * ,-----------------------------------------------------------.
-     * |RSET| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10| Del|
+     * |SLEP| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10| Del|
      * |-----------------------------------------------------------|
      * |Caps | F11| F12| AU+| AU-| AG=|AGSW| BL*| BL+| BL-|        |
      * |-----------------------------------------------------------|
      * |        | NK+| NK-|RGB*|    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * |SYSSLP|     |     |           |             |   |    |     |
+     * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
-        RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
+        KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
         KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC,  _______, \
         _______, NK_ON,   NK_OFF,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, \
-        KC_SYSTEM_SLEEP, _______,  _______, _______, _______, _______, _______, _______ \
+        _______, _______,  _______, _______, _______, _______, _______, _______ \
         ),
 
 };
