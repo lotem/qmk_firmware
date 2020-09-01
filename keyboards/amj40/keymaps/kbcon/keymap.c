@@ -21,17 +21,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * | Esc|  Q |  W |  E |  R |  T |  Y |  U |  I |  O |  P | BS |
      * |-----------------------------------------------------------|
-     * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |  ;     |
+     * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |  Ent   |
      * |-----------------------------------------------------------|
-     * |  \ fn  |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn/ |
+     * |   fn   | ^Z |  X |  C |  V |  B |  N |  M |  ,  |  . | ^/ |
      * |-----------------------------------------------------------|
      * | LCtl | LAlt| LGui|   LSht    |     spc     |fn2|RAlt|RCtl |
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC,\
-        LT(_RAISE, KC_TAB), KC_A, KC_S,  KC_D,   KC_F,   KC_G,   KC_H,   KC_J,    KC_K,    KC_L,   LT(_RAISE, KC_SCLN), \
-        LT(_LOWER, KC_BSLS), KC_Z, KC_X, KC_C,   KC_V,   KC_B,   KC_N,   KC_M,    KC_COMM, KC_DOT, LT(_LOWER, KC_SLSH), \
+        KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
+        MO(_LOWER), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_SPC, LT(_ADJUST, KC_LGUI), KC_RALT, KC_RCTL \
         ),
 
@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |  ` |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |  0 |Del |
      * |-----------------------------------------------------------|
-     * |     |  - |  = |  ( |  ) |  ; |Left| Dn | Up |Rght|  '     |
+     * |  '  |  - |  = |  ( |  ) |  ; |Left| Dn | Up |Rght|  ;     |
      * |-----------------------------------------------------------|
      * |        |  ` |  ' |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
@@ -48,16 +48,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
-        _______, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, \
+        KC_QUOT, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, \
         _______, KC_GRV,  KC_QUOT, KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
-        _______, _______, _______, _______, KC_ENT,  _______, _______, _______ \
+        _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
     /* Raise Layer
      * ,-----------------------------------------------------------.
      * |  ~ |  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) |Del |
      * |-----------------------------------------------------------|
-     * |     |  _ |  + |  ( |  ) |  : |Home|PgDn|PgUp|End |   "    |
+     * |  "  |  _ |  + |  ( |  ) |  : |Home|PgDn|PgUp|End |  :     |
      * |-----------------------------------------------------------|
      * |        |  ~ |  " |  { |  } |Pipe|  _ |  + | MS2 |MSU |MS3 |
      * |-----------------------------------------------------------|
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT( \
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-        _______, KC_UNDS, KC_PLUS, KC_LPRN, KC_RPRN, KC_COLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DQT, \
+        KC_DQT,  KC_UNDS, KC_PLUS, KC_LPRN, KC_RPRN, KC_COLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_COLN, \
         _______, KC_TILD, KC_DQT,  KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_MS_BTN2, KC_MS_UP, KC_MS_BTN3, \
         _______, _______, _______, _______, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
         ),
