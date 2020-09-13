@@ -25,34 +25,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |  Ent   |
      * |-----------------------------------------------------------|
-     * |   fn0  |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn1/|
+     * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn1/|
      * |-----------------------------------------------------------|
-     * | LCtl | LAlt| LGui|   LSht    |     spc     |fn2|RAlt|RCtl |
+     * | LGui | LAlt| fn0 |    LCtl   |     spc     |fn0|RAlt|RCtl |
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC,\
         KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
-        MO(_LOWER), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
-        KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_SPC, LT(_ADJUST, KC_ENT), KC_RALT, KC_RCTL \
+        KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
+        KC_LGUI, KC_LALT, MO(_LOWER), KC_LCTL, KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
         ),
 
     /* Homely Layer
      * ,-----------------------------------------------------------.
-     * | Esc|  Q |  W |  E |  R |  T |  Y |  U |  I |  O |  P | BS |
+     * | Esc|  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; | BS |
      * |-----------------------------------------------------------|
-     * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |   ;    |
+     * | Tab |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
      * |-----------------------------------------------------------|
-     * |   fn0  |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn1/|
+     * | LSft   |  Z |  X |  C |  V |  B |  P |  M |  ,  |  . |fn1/|
      * |-----------------------------------------------------------|
-     * | LCtl | LAlt| LGui|   LSht    |     spc     |fn2|RAlt|RCtl |
+     * | LGui | LAlt| fn0 |  LCtl/Ent |     spc     |fn0|RAlt|RCtl |
      * `-----------------------------------------------------------'
      */
     [_HOMELY] = LAYOUT( \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_SCLN, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______ \
+        KC_ESC,  KC_Q,    KC_W,    KC_D,    KC_F,   KC_K,   KC_J,   KC_U,   KC_R,   KC_L,   KC_SCLN, KC_BSPC,\
+        KC_TAB,  KC_A,    KC_S,    KC_E,    KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,   KC_O,   KC_H, \
+        KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_P, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
+        KC_LGUI, KC_LALT, MO(_LOWER), CTL_T(KC_ENT), KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
         ),
 
     /* Lower Layer
@@ -63,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |  - |  = |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     |     |           |             |   |    |     |
+     * |      |     | fn2 |           |             |fn2|    |     |
      * `-----------------------------------------------------------'
      */
     [_LOWER] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
         KC_CAPS, KC_BSLS, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, \
         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______ \
+        _______, _______, MO(_ADJUST), _______, _______, MO(_ADJUST), _______, _______ \
         ),
 
     /* Raise Layer
