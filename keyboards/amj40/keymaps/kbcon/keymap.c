@@ -5,14 +5,14 @@
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _HOMELY 1
+#define _COMBO 1
 #define _LOWER 2
 #define _RAISE 3
 #define _ADJUST 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  HOMELY,
+  COMBO,
   LOWER,
   RAISE,
   ADJUST,
@@ -25,34 +25,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |  Ent   |
      * |-----------------------------------------------------------|
-     * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn1/|
+     * | LSft   | ^Z |  X |  C |  V |  B |  N |  M |  ,  |  . | ^/ |
      * |-----------------------------------------------------------|
-     * | LGui | LAlt| fn0 |    LCtl   |     spc     |fn0|RAlt|RCtl |
+     * | LGui | LAlt| LCtl|  Lower ;  |     spc     |Ctl|RAlt|RGui*|
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
-        KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC,\
+        KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC, \
         KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
-        KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
-        KC_LGUI, KC_LALT, MO(_LOWER), KC_LCTL, KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
+        KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M,   KC_COMM, RSFT_T(KC_DOT), LT(_RAISE, KC_SLSH), \
+        KC_LGUI, KC_LALT, KC_LCTL, LT(_LOWER, KC_SCLN), KC_SPC, KC_RCTL, KC_RALT, LT(_ADJUST, KC_RGUI) \
         ),
 
-    /* Homely Layer
+    /* Combo Layer: I have more fingers than you!
      * ,-----------------------------------------------------------.
-     * | Esc|  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; | BS |
+     * |    |    |    |    |    |    |    |    |    |    |    |    |
      * |-----------------------------------------------------------|
-     * | Tab |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
+     * |     |    |    |    |    |    |    |    |    |    |        |
      * |-----------------------------------------------------------|
-     * | LSft   |  Z |  X |  C |  V |  B |  P |  M |  ,  |  . |fn1/|
+     * |        |    |    |    |    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * | LGui | LAlt| fn0 |  LCtl/Ent |     spc     |fn0|RAlt|RCtl |
+     * |      |     |Lower|    Ctrl   |     spc     |Lwr|    |     |
      * `-----------------------------------------------------------'
      */
-    [_HOMELY] = LAYOUT( \
-        KC_ESC,  KC_Q,    KC_W,    KC_D,    KC_F,   KC_K,   KC_J,   KC_U,   KC_R,   KC_L,   KC_SCLN, KC_BSPC,\
-        KC_TAB,  KC_A,    KC_S,    KC_E,    KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,   KC_O,   KC_H, \
-        KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_P, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
-        KC_LGUI, KC_LALT, MO(_LOWER), CTL_T(KC_ENT), KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
+    [_COMBO] = LAYOUT( \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, MO(_LOWER), KC_LCTL, KC_SPC, MO(_LOWER), _______, _______ \
         ),
 
     /* Lower Layer
@@ -63,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |  - |  = |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     | fn2 |           |    Enter    |fn2|    |     |
+     * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_LOWER] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
         KC_CAPS, KC_BSLS, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, \
         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
-        _______, _______, MO(_ADJUST), _______, KC_ENT, MO(_ADJUST), _______, _______ \
+        _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
     /* Raise Layer
@@ -95,18 +95,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |SLEP| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10| Del|
      * |-----------------------------------------------------------|
-     * |Caps | F11| F12| AU+| AU-| AG=|AGSW| BL*| BL+| BL-| LSwitch|
+     * |Caps | F11| F12| AU+| AU-| AG=|AGSW| BL*| BL+| BL-|        |
      * |-----------------------------------------------------------|
      * |        | NK+| NK-|RGB*|    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     |     |           |             |   |    |     |
+     * |      |     |     |   Combo*  |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
-        KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC,  TG(_HOMELY), \
+        KC_CAPS, KC_F11,  KC_F12,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BL_TOGG, BL_INC,  BL_DEC,  _______, \
         _______, NK_ON,   NK_OFF,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, \
-        _______, _______, _______, _______, _______, _______, _______, _______ \
+        _______, _______, _______, TG(_COMBO), _______, _______, _______, _______ \
         ),
 
 };
@@ -114,11 +114,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
-    case HOMELY:
+    case COMBO:
       if (record->event.pressed) {
-        layer_on(_HOMELY);
+        layer_on(_COMBO);
       } else {
-        layer_off(_HOMELY);
+        layer_off(_COMBO);
       }
       return false;
       break;
