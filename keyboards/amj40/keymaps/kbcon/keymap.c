@@ -21,9 +21,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Default Layer
      * ,-----------------------------------------------------------.
-     * | Esc|  Q |  W |  E |  R |  T |  Y |  U |  I |  O |  P | BS |
+     * | Tab|  Q |  W |  E |  R |  T |  Y |  U |  I |  O |  P | BS |
      * |-----------------------------------------------------------|
-     * | Tab |  A |  S |  D |  F |  G |  H |  J |  K |  L |  Ent   |
+     * | Esc |  A |  S |  D |  F |  G |  H |  J |  K |  L |  Ent   |
      * |-----------------------------------------------------------|
      * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . |fn1/|
      * |-----------------------------------------------------------|
@@ -31,26 +31,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
-        KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC,\
-        KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
+        KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,   KC_BSPC, \
+        KC_ESC,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
         KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
         KC_LGUI, KC_LALT, MO(_LOWER), KC_LCTL, KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
         ),
 
     /* Homely Layer
      * ,-----------------------------------------------------------.
-     * | Esc|  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; | BS |
+     * | Tab|  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; | BS |
      * |-----------------------------------------------------------|
-     * | Tab |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
+     * | Esc |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
      * |-----------------------------------------------------------|
      * | LSft   |  Z |  X |  C |  V |  B |  P |  M |  ,  |  . |fn1/|
      * |-----------------------------------------------------------|
-     * | LGui | LAlt| fn0 |  LCtl/Ent |     spc     |fn0|RAlt|RCtl |
+     * | LGui | LAlt| fn0 |    LCtl   |     spc     |fn0|RAlt|RCtl |
      * `-----------------------------------------------------------'
      */
     [_HOMELY] = LAYOUT( \
-        KC_ESC,  KC_Q,    KC_W,    KC_D,    KC_F,   KC_K,   KC_J,   KC_U,   KC_R,   KC_L,   KC_SCLN, KC_BSPC,\
-        KC_TAB,  KC_A,    KC_S,    KC_E,    KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,   KC_O,   KC_H, \
+        KC_TAB,  KC_Q,    KC_W,    KC_D,    KC_F,   KC_K,   KC_J,   KC_U,   KC_R,   KC_L,   KC_SCLN, KC_BSPC,\
+        KC_ESC,  KC_A,    KC_S,    KC_E,    KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,   KC_O,   KC_H, \
         KC_LSFT, LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_P, KC_M, KC_COMM, KC_DOT, LT(_RAISE, KC_SLSH), \
         KC_LGUI, KC_LALT, MO(_LOWER), CTL_T(KC_ENT), KC_SPC, MO(_LOWER), KC_RALT, KC_RCTL \
         ),
