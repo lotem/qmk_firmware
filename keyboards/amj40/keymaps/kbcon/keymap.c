@@ -63,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |  - |  = |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     | fn2 |           |             |fn2|    |     |
+     * |      |     | fn2 |           |    Enter    |fn2|    |     |
      * `-----------------------------------------------------------'
      */
     [_LOWER] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
         KC_CAPS, KC_BSLS, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, \
         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
-        _______, _______, MO(_ADJUST), _______, _______, MO(_ADJUST), _______, _______ \
+        _______, _______, MO(_ADJUST), _______, KC_ENT, MO(_ADJUST), _______, _______ \
         ),
 
     /* Raise Layer
