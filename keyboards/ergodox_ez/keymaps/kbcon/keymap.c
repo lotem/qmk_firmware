@@ -21,12 +21,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  Esc   |   1  |   2  |   3  |   4  |   5  |  `   |           |  Del |   6  |   7  |   8  |   9  |   0  |  BkSp  |
+ * |  Esc   |   1  |   2  |   3  |   4  |   5  |   `  |           |  LSw |   6  |   7  |   8  |   9  |   0  |  Del   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  |  [   |           |   ]  |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  |   [  |           |   ]  |   Y  |   U  |   I  |   O  |   P  |  BkSp  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  BkSp  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------|  =   |           |   -  |------+------+------+------+------+--------|
+ * |   \    |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
+ * |--------+------+------+------+------+------|   -  |           |   =  |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | LGui |  Alt | Ctrl | MDIA | SYMB |                                       | SYMB | MDIA | Ctrl |  Alt | RGui |
@@ -43,17 +43,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // left hand
   KC_ESC,          KC_1,    KC_2,     KC_3,     KC_4,    KC_5,    KC_GRV,
   KC_TAB,          KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,    KC_LBRC,
-  KC_BSPC,         KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
-  KC_LSFT,         KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,    LSFT_T(KC_EQL),
+  KC_BSLS,         KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
+  KC_LSFT,         KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,    LSFT_T(KC_MINS),
   KC_LGUI,         KC_LALT, KC_LCTL,  MO(MDIA), MO(SYMB),
                                                          KC_LEFT, KC_RGHT,
                                                                   KC_UP,
                                                 KC_LCTL, KC_LALT, KC_DOWN,
   // right hand
-  KC_DEL,          KC_6,    KC_7,     KC_8,     KC_9,    KC_0,    KC_BSPC,
-  KC_RBRC,         KC_Y,    KC_U,     KC_I,     KC_O,    KC_P,    KC_BSLS,
+  TG(STENO),       KC_6,    KC_7,     KC_8,     KC_9,    KC_0,    KC_DEL,
+  KC_RBRC,         KC_Y,    KC_U,     KC_I,     KC_O,    KC_P,    KC_BSPC,
                    KC_H,    KC_J,     KC_K,     KC_L,    KC_SCLN, KC_QUOT,
-  RSFT_T(KC_MINS), KC_N,    KC_M,     KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
+  RSFT_T(KC_EQL),  KC_N,    KC_M,     KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
                             MO(SYMB), MO(MDIA), KC_RCTL, KC_RALT, KC_RGUI,
   KC_ESC,  KC_TAB,
   KC_PGUP,
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 5: Stenotype
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | BKSPC  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * | BKSPC  |      |      |      |      |      |      |           |  LSw |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   #  |   #  |   #  |   #  |   #  |      |           |      |   #  |   #  |   #  |   #  |   #  |   #    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 7: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |Version |      |      |      |      |      | STENO|           |      |      |      |      |      |      |  EPRM  |
+ * |Version |      |      |      |      |      |      |           |      |      |      |      |      |      |  EPRM  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |  Prev  |      |      | MsUp |      |      |      |           |      |      |   7  |   8  |   9  |      |  VolUp |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [MDIA] = LAYOUT_ergodox(
   // left hand
-  VRSN,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(STENO),
+  VRSN,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_MPRV, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_MPLY, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
   KC_MNXT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
