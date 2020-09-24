@@ -105,11 +105,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------------.           ,--------------------------------------------------.
  * |   F11   |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |  F12   |
  * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |         |   !  |   @  |   {  |   }  |   |  |      |           |      |   `  |   &  |   *  |   +  |   ~  |        |
+ * |         |   !  |   @  |   {  |   }  |   |  |      |           |      |   `  |   &  |   *  |   '  |   "  |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  CAPS   |   #  |   $  |   (  |   )  |  Tab |------|           |------| BkSp |   _  |   -  |   =  |   :  |        |
+ * |  CAPS   |   #  |   $  |   (  |   )  |  Tab |------|           |------| BkSp |   -  |   +  |   =  |   :  |        |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   %  |   ^  |   [  |   ]  |   \  |      |           |      |   '  |   "  |   <  |   >  |   ?  |        |
+ * |         |   %  |   ^  |   [  |   ]  |   \  |      |           |      |   ~  |   _  |   <  |   >  |   ?  |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |       |      | Home | End  |      |                                       |      | PgDn | PgUp |      |      |
  *   `-----------------------------------'                                       `----------------------------------'
@@ -133,9 +133,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       KC_TRNS, KC_TRNS, KC_TRNS,
   // right hand
   KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F12,
-  KC_TRNS, KC_GRV,  KC_AMPR, KC_ASTR, KC_PLUS, KC_TILD, KC_TRNS,
-           KC_BSPC, KC_UNDS, KC_MINS, KC_EQL,  KC_COLN, KC_TRNS,
-  KC_TRNS, KC_QUOT, KC_DQT,  KC_LABK, KC_RABK, KC_QUES, KC_TRNS,
+  KC_TRNS, KC_GRV,  KC_AMPR, KC_ASTR, KC_QUOT, KC_DQT,  KC_TRNS,
+           KC_BSPC, KC_MINS, KC_PLUS, KC_EQL,  KC_COLN, KC_TRNS,
+  KC_TRNS, KC_TILD, KC_UNDS, KC_LABK, KC_RABK, KC_QUES, KC_TRNS,
                     KC_TRNS, KC_PGDN, KC_PGUP, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS,
   KC_TRNS,
