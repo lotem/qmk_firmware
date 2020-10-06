@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |  ~ |  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) |Del |
      * |-----------------------------------------------------------|
-     * |Caps |Pipe|  " |  ( |  ) |  : |Left| Dn | Up |Rght|  Enter |
+     * |Caps |  ? |  " |  ( |  ) |  : |Left| Dn | Up |Rght|    :   |
      * |-----------------------------------------------------------|
      * |        |  _ |  + |  { |  } |Pipe|  _ |  + | MS2 |MSU |MS3 |
      * |-----------------------------------------------------------|
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT( \
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-        KC_CAPS, KC_PIPE, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT, \
+        KC_CAPS, KC_QUES, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_COLN, \
         _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_MS_BTN2, KC_MS_UP, KC_MS_BTN3, \
         _______, _______, _______, _______, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
                        ),
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |  ` |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |  0 |Del |
      * |-----------------------------------------------------------|
-     * |Caps |  \ |  ' |  ( |  ) |  ; |Home|PgDn|PgUp|End |  Enter |
+     * |Caps |  / |  ' |  ( |  ) |  ; |Home|PgDn|PgUp|End |    ;   |
      * |-----------------------------------------------------------|
      * |        |  - |  = |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
-        KC_CAPS, KC_BSLS, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_ENT, \
+        KC_CAPS, KC_SLSH, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_SCLN, \
         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
                        ),
