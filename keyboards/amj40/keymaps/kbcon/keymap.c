@@ -29,14 +29,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . | S/ |
      * |-----------------------------------------------------------|
-     * | LCtl | LGui| LAlt| Lower/spc |  Raise/spc  |Alt| fn |RCtl |
+     * | LGui | LAlt| LCtl| Lower/spc |  Raise/spc  |Ctl|RAlt | fn |
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
         KC_ESC,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
         KC_LSFT, LT(_RAISE, KC_Z), KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), \
-        KC_LCTL, KC_LGUI, KC_LALT, LT(_LOWER, KC_SPC), LT(_RAISE, KC_SPC), KC_RALT, MO(_ADJUST), KC_RCTL \
+        KC_LGUI, KC_LALT, KC_LCTL, LT(_LOWER, KC_SPC), LT(_RAISE, KC_SPC), KC_RCTL, KC_RALT, MO(_ADJUST) \
         ),
 
     /* Homely Layer
@@ -65,14 +65,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |    |    |    |    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * | LALt |     |Lower|    Ctrl   |     spc     | Rs|    |RAlt |
+     * |      |     |Lower|    Ctrl   |     spc     | Rs|    |     |
      * `-----------------------------------------------------------'
      */
     [_COMBO] = LAYOUT( \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        KC_LALT, _______, MO(_LOWER), KC_LCTL, KC_SPC, MO(_RAISE), _______, KC_RALT \
+        _______, _______, MO(_LOWER), KC_LCTL, KC_SPC, MO(_RAISE), _______, _______ \
         ),
 
     /* Lower Layer
