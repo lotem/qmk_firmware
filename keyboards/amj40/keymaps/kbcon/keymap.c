@@ -115,38 +115,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |SLEP| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10|RSET|
      * |-----------------------------------------------------------|
-     * |Caps | F11| F12|    |    |    |Home|PgDn|PgUp|End | Homely*|
+     * |Caps | F11| F12|    |    |    |Home|PgDn|PgUp|End |        |
      * |-----------------------------------------------------------|
-     * |        |Gui-|Gui+|AGSw|AGNo| NK-| NK+|    |     |    |    |
+     * |        | L0 | L1 | L2 |AGTG| NK-| NK+|    |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     |     |   Combo*  |             |   |    |     |
+     * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
-        KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  TG(_HOMELY), \
-        _______, GUI_OFF, GUI_ON,  AG_SWAP, AG_NORM, NK_OFF,  NK_ON,   _______, _______, _______, _______, \
-        _______, _______, _______, TG(_COMBO), _______, _______, _______, _______ \
+        KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
+        _______, DF(_QWERTY), DF(_HOMELY), DF(_COMBO), AG_TOGG, NK_OFF,  NK_ON,   _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
   switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
     case HOMELY:
       if (record->event.pressed) {
-        layer_on(_HOMELY);
-      } else {
-        layer_off(_HOMELY);
+        set_single_persistent_default_layer(_HOMELY);
       }
       return false;
       break;
     case COMBO:
       if (record->event.pressed) {
-        layer_on(_COMBO);
-      } else {
-        layer_off(_COMBO);
+        set_single_persistent_default_layer(_COMBO);
       }
       return false;
       break;
