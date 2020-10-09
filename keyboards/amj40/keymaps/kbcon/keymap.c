@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |Caps | F11| F12|    |    |    |Home|PgDn|PgUp|End |        |
      * |-----------------------------------------------------------|
-     * |        | L0 | L1 | L2 |AGTG| NK-| NK+|    |     |    |    |
+     * |        | L0 | L1 | L2 |AGTG| NK-| NK+| AS-| AS+ |ASRP|ASTG|
      * |-----------------------------------------------------------|
      * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
         KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
-        _______, DF(_QWERTY), DF(_HOMELY), DF(_COMBO), AG_TOGG, NK_OFF,  NK_ON,   _______, _______, _______, _______, \
+        _______, DF(_QWERTY), DF(_HOMELY), DF(_COMBO), AG_TOGG, NK_OFF,  NK_ON, KC_ASDN, KC_ASUP, KC_ASRP, KC_ASTG, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 

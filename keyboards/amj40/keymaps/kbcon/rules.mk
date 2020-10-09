@@ -2,6 +2,7 @@
 #   change to "no" to disable the options, or define them in the Makefile in
 #   the appropriate keymap folder that will get included automatically
 #
+AUTO_SHIFT_ENABLE = yes
 BOOTMAGIC_ENABLE = full # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE  = yes # Mouse keys(+4700)
 EXTRAKEY_ENABLE  = yes # Audio control and System control(+450)
