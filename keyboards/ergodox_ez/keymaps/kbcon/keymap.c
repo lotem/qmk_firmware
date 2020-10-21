@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_RALT,
   KC_RGUI, KC_ENT, KC_SPC
 ),
-/* Keymap 5: Stenotype
+/* Keymap 1: Stenotype
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | BKSPC  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 7: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |SYSSLEEP|      |      |      |      |      |      |           | STENO|      |      |      |      |      | RESET  |
+ * |SYSSLEEP|      |      |      |      |      |STENO |           |      |      |      |      |      |      | RESET  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      | MsUp |      |      |      |           |      |      |   7  |   8  |   9  |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [MDIA] = LAYOUT_ergodox(
   // left hand
-  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(STENO),
   KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_APP,  KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_WBAK, KC_TRNS,
@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         KC_APP,
                                       KC_BTN1, KC_BTN2, KC_WBAK,
   // right hand
-  TG(STENO), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
   KC_TRNS, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_TRNS, KC_TRNS,
            KC_TRNS, KC_4,    KC_5,    KC_6,    KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_1,    KC_2,    KC_3,    KC_TRNS, KC_TRNS,
