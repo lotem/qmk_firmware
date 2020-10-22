@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   [    |   1  |   2  |   3  |   4  |   5  |      |           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
+ * |   [    |   1  |   2  |   3  |   4  |   5  | Steno|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |   =    |   Q  |   W  |   E  |   R  |   T  |   `  |           | Del  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     KC_NO,
+  KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     TG(STENO),
   KC_EQL,       KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,     KC_GRV,
   KC_MINS,      KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
   KC_LSFT,      KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,     KC_TAB,
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 7: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |SYSSLEEP|      |      |      |      |      |STENO |           |      |      |      |      |      |      | RESET  |
+ * |SYSSLEEP|      |      |      |      |      |      |           |      |      |      |      |      |      | RESET  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      | MsUp |      |      |      |           |      |      |   7  |   8  |   9  |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [MDIA] = LAYOUT_ergodox(
   // left hand
-  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(STENO),
+  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_APP,  KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_WBAK, KC_TRNS,
