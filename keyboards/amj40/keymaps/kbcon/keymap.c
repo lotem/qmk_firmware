@@ -6,7 +6,7 @@
 // entirely and just use numbers.
 #define _QWERTY 0
 #define _HOMELY 1
-#define _COMBO 2
+#define _TYPEWR 2
 #define _LOWER 3
 #define _RAISE 4
 #define _ADJUST 5
@@ -14,11 +14,14 @@
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   HOMELY,
-  COMBO,
+  TYPEWR,
   LOWER,
   RAISE,
   ADJUST,
 };
+
+#define ALT_ESC LALT_T(KC_ESC)
+#define ALT_DEL RALT_T(KC_DEL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Default Layer
@@ -29,35 +32,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | LSft   |  Z |  X |  C |  V |  B |  N |  M |  ,  |  . | S/ |
      * |-----------------------------------------------------------|
-     * | LGui | LAlt| LCtl| Lower/spc |  Raise/spc  |Ctl|RAlt | fn |
+     * | Ctrl | Gui |Lower|    Ctrl   |     spc     | Rs| Del|  fn |
      * `-----------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT( \
         KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        KC_ESC,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
-        KC_LSFT, LT(_RAISE, KC_Z), KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), \
-        KC_LGUI, KC_LALT, KC_LCTL, LT(_LOWER, KC_SPC), LT(_RAISE, KC_SPC), KC_RCTL, KC_RALT, MO(_ADJUST) \
+        ALT_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
+        KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), \
+        KC_LCTL, KC_LGUI, MO(_LOWER), KC_LCTL, KC_SPC, MO(_RAISE), ALT_DEL, MO(_ADJUST) \
         ),
 
     /* Homely Layer
      * ,-----------------------------------------------------------.
-     * |    |    |    |    |    |    |    |    |    |    |    |    |
+     * |    |  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; |    |
      * |-----------------------------------------------------------|
-     * |     |    |    |    |    |    |    |    |    |    |  ;     |
+     * |     |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
      * |-----------------------------------------------------------|
-     * |        |    |    |    |    |    |    |    |     |    |    |
+     * |        |  Z |  X |  C |  V |  B |  P |  M |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     |     | Lower/Ent |             |   |    |     |
+     * |      |     |     |   Enter   |     spc     |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_HOMELY] = LAYOUT( \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_SCLN, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, LT(_LOWER, KC_ENT), _______, _______, _______, _______ \
+        _______, KC_Q,   KC_W,   KC_D,   KC_F,   KC_K,   KC_J,   KC_U,   KC_R,    KC_L,    KC_SCLN,    _______, \
+        _______, KC_A,   KC_S,   KC_E,   KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,    KC_O,    KC_H, \
+        _______, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_P,   KC_M,   _______, _______, _______, \
+        _______, _______, _______, KC_ENT, KC_SPC, _______, _______, _______ \
         ),
 
-    /* Combo Layer: I have more fingers than you!
+    /* Typewriter Layer
      * ,-----------------------------------------------------------.
      * |    |    |    |    |    |    |    |    |    |    |    |    |
      * |-----------------------------------------------------------|
@@ -65,21 +68,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |    |    |    |    |    |    |    |     |    |    |
      * |-----------------------------------------------------------|
-     * |      |     |Lower|    Ctrl   |     spc     | Rs|    |     |
+     * | Ctrl | Gui | Alt | Lower/spc |  Raise/spc  |Alt|    |     |
      * `-----------------------------------------------------------'
      */
-    [_COMBO] = LAYOUT( \
+    [_TYPEWR] = LAYOUT( \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, MO(_LOWER), KC_LCTL, KC_SPC, MO(_RAISE), _______, _______ \
+        KC_LCTL, _______, KC_LALT, LT(_LOWER, KC_SPC), LT(_RAISE, KC_SPC), KC_RALT, KC_DEL, _______ \
         ),
 
     /* Lower Layer
      * ,-----------------------------------------------------------.
      * |  ~ |  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) |Del |
      * |-----------------------------------------------------------|
-     * |Caps |  ? |  " |  ( |  ) |  : |Left| Dn | Up |Rght|    :   |
+     * |Caps |  ? |  " |  ( |  ) |  : |Left| Dn | Up |Rght|  Enter |
      * |-----------------------------------------------------------|
      * |        |  _ |  + |  { |  } |Pipe|  _ |  + | MS2 |MSU |MS3 |
      * |-----------------------------------------------------------|
@@ -88,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT( \
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-        KC_CAPS, KC_QUES, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_COLN, \
+        KC_CAPS, KC_QUES, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ENT, \
         _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_MS_BTN2, KC_MS_UP, KC_MS_BTN3, \
         _______, _______, _______, _______, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
                        ),
@@ -97,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |  ` |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |  0 |Del |
      * |-----------------------------------------------------------|
-     * |Caps |  / |  ' |  ( |  ) |  ; |Home|PgDn|PgUp|End |    ;   |
+     * |Caps |  / |  ' |  ( |  ) |  ; |Home|PgDn|PgUp|End |  Enter |
      * |-----------------------------------------------------------|
      * |        |  - |  = |  [ |  ] |  \ |  - |  = |     |    |    |
      * |-----------------------------------------------------------|
@@ -106,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
-        KC_CAPS, KC_SLSH, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_SCLN, \
+        KC_CAPS, KC_SLSH, KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_ENT, \
         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
                        ),
@@ -115,17 +118,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |SLEP| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10|RSET|
      * |-----------------------------------------------------------|
-     * |Caps | F11| F12|    |    |    |Home|PgDn|PgUp|End |        |
+     * |Caps | F11| F12|    |    |    |    |    |    |    |        |
      * |-----------------------------------------------------------|
-     * |        | L0 | L1 | L2 |AGTG| NK-| NK+|    |     |    |    |
+     * |        | L0 | L1 | L2 |AGTG| NK-| NK+|    | WhDn|WhUp|    |
      * |-----------------------------------------------------------|
      * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
-        KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
-        _______, DF(_QWERTY), DF(_HOMELY), DF(_COMBO), AG_TOGG, NK_OFF,  NK_ON,   _______, _______, _______, _______, \
+        KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, DF(_QWERTY), DF(_HOMELY), DF(_TYPEWR), AG_TOGG, NK_OFF,  NK_ON,   _______, KC_WH_D, KC_WH_U, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
@@ -145,9 +148,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case COMBO:
+    case TYPEWR:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_COMBO);
+        set_single_persistent_default_layer(_TYPEWR);
       }
       return false;
       break;
