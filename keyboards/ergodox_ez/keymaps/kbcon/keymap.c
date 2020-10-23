@@ -2,9 +2,10 @@
 #include "version.h"
 
 #define BASE 0 // default layer
-#define STENO 1 // stenotype
-#define SYMB 2 // symbols
-#define MDIA 3 // media keys
+#define HOMELY 1 // homely layer
+#define STENO 2 // stenotype
+#define SYMB 3 // symbols
+#define MDIA 7 // media keys
 
 
 enum custom_keycodes {
@@ -21,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   [    |   1  |   2  |   3  |   4  |   5  | Steno|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
+ * |   [    |   1  |   2  |   3  |   4  |   5  | STENO|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |   =    |   Q  |   W  |   E  |   R  |   T  |   `  |           | Del  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -59,7 +60,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_RALT,
   KC_RGUI, KC_ENT, KC_SPC
 ),
-/* Keymap 1: Stenotype
+/* Keymap 1: Norman layout
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |   Q  |   W  |   D  |   F  |   K  |      |           |      |   J  |   U  |   R  |   L  |   ;  |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |   A  |   S  |   E  |   T  |   G  |------|           |------|   Y  |   N  |   I  |   O  |   H  |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   P  |   M  |   ,  |   .  |   /  |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[HOMELY] = LAYOUT_ergodox(
+  // left hand
+  KC_TRNS,      KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS,
+  KC_TRNS,      KC_Q,    KC_W,     KC_D,     KC_F,    KC_K,     KC_TRNS,
+  KC_TRNS,      KC_A,    KC_S,     KC_E,     KC_T,    KC_G,
+  KC_TRNS,      KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,     KC_TRNS,
+  KC_TRNS,      KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,
+                                                      KC_TRNS,  KC_TRNS,
+                                                                KC_TRNS,
+                                              KC_TRNS, KC_TRNS, KC_TRNS,
+  // right hand
+  KC_TRNS,      KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS,
+  KC_TRNS,      KC_J,    KC_U,     KC_R,     KC_L,    KC_SCLN,  KC_TRNS,
+                KC_Y,    KC_N,     KC_I,     KC_O,    KC_H,     KC_TRNS,
+  KC_TRNS,      KC_P,    KC_M,     KC_COMM,  KC_DOT,  KC_SLSH,  KC_TRNS,
+                         KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS,
+
+  KC_TRNS, KC_TRNS,
+  KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS
+),
+/* Keymap 2: Stenotype
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | BKSPC  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -100,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_NO,
        KC_NO,   KC_N,    KC_M
 ),
-/* Keymap 4: Symbol Layer
+/* Keymap 3: Symbol Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
  * |   F11   |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |  F12   |
@@ -144,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 7: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |SYSSLEEP|      |      |      |      |      |      |           |      |      |      |      |      |      | RESET  |
+ * |SYSSLEEP|HOMELY|      |      |      |      |      |           |      |      |      |      |      |QWERTY| RESET  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      | MsUp |      |      |      |           |      |      |   7  |   8  |   9  |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -164,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [MDIA] = LAYOUT_ergodox(
   // left hand
-  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_SLEP, DF(HOMELY), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_APP,  KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_WBAK, KC_TRNS,
@@ -173,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         KC_APP,
                                       KC_BTN1, KC_BTN2, KC_WBAK,
   // right hand
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(BASE), RESET,
   KC_TRNS, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_TRNS, KC_TRNS,
            KC_TRNS, KC_4,    KC_5,    KC_6,    KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_1,    KC_2,    KC_3,    KC_TRNS, KC_TRNS,
