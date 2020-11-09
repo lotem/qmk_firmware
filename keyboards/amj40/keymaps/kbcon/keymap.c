@@ -5,15 +5,13 @@
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _HOMELY 1
-#define _TYPEWR 2
-#define _LOWER 3
-#define _RAISE 4
-#define _ADJUST 5
+#define _TYPEWR 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  HOMELY,
   TYPEWR,
   LOWER,
   RAISE,
@@ -40,24 +38,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ALT_ESC, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_ENT, \
         KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  RSFT_T(KC_SLSH), \
         KC_LCTL, KC_LGUI, MO(_LOWER), KC_LCTL, KC_SPC, MO(_RAISE), ALT_DEL, MO(_ADJUST) \
-        ),
-
-    /* Homely Layer
-     * ,-----------------------------------------------------------.
-     * |    |  Q |  W |  D |  F |  K |  J |  U |  R |  L |  ; |    |
-     * |-----------------------------------------------------------|
-     * |     |  A |  S |  E |  T |  G |  Y |  N |  I |  O |  H     |
-     * |-----------------------------------------------------------|
-     * |        |  Z |  X |  C |  V |  B |  P |  M |     |    |    |
-     * |-----------------------------------------------------------|
-     * |      |     |     |   Enter   |     spc     |   |    |     |
-     * `-----------------------------------------------------------'
-     */
-    [_HOMELY] = LAYOUT( \
-        _______, KC_Q,   KC_W,   KC_D,   KC_F,   KC_K,   KC_J,   KC_U,   KC_R,    KC_L,    KC_SCLN,    _______, \
-        _______, KC_A,   KC_S,   KC_E,   KC_T,   KC_G,   KC_Y,   KC_N,   KC_I,    KC_O,    KC_H, \
-        _______, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_P,   KC_M,   _______, _______, _______, \
-        _______, _______, _______, KC_ENT, KC_SPC, _______, _______, _______ \
         ),
 
     /* Typewriter Layer
@@ -128,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
         KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, DF(_QWERTY), DF(_HOMELY), DF(_TYPEWR), AG_TOGG, NK_OFF,  NK_ON,   _______, KC_WH_D, KC_WH_U, _______, \
+        _______, DF(_QWERTY), DF(_TYPEWR), _______, AG_TOGG, NK_OFF,  NK_ON,   _______, KC_WH_D, KC_WH_U, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
@@ -139,12 +119,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case HOMELY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_HOMELY);
       }
       return false;
       break;
