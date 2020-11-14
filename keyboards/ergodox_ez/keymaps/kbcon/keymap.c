@@ -14,14 +14,15 @@ enum custom_keycodes {
   EPRM = SAFE_RANGE,
 #endif
   VRSN,
-  RGB_SLD
+  PLON,
+  PLOFF,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   [    |   1  |   2  |   3  |   4  |   5  | STENO|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
+ * |   [    |   1  |   2  |   3  |   4  |   5  |  PLON|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |   =    |   Q  |   W  |   E  |   R  |   T  |   `  |           | Del  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -41,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
   // left hand
-  KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     TG(STENO),
+  KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     PLON,
   KC_EQL,       KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,     KC_GRV,
   KC_MINS,      KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
   KC_LSFT,      KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,     KC_TAB,
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Stenotype
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | BKSPC  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |        |      |      |      |      |      | PLOFF|           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   #  |   #  |   #  |   #  |   #  |      |           |      |   #  |   #  |   #  |   #  |   #  |   #    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -82,23 +83,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [STENO] = LAYOUT_ergodox(
     // left hand
-       KC_BSPC, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
-       KC_NO,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_TRNS,
-       KC_NO,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
-       KC_NO,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                           KC_TRNS, KC_NO,
-                                                    KC_NO,
-                                  KC_C,    KC_V,    KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   PLOFF,
+    KC_NO,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_TRNS,
+    KC_NO,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
+    KC_NO,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                                 KC_TRNS, KC_NO,
+                                                          KC_NO,
+                                        KC_C,    KC_V,    KC_NO,
     // right hand
-       KC_TRNS, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-       KC_TRNS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-       KC_TRNS, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_NO,   KC_TRNS,
-       KC_NO,
-       KC_NO,   KC_N,    KC_M
+    KC_TRNS, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_TRNS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
+    KC_TRNS, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_NO,   KC_TRNS,
+    KC_NO,
+    KC_NO,   KC_N,    KC_M
 ),
 /* Keymap 3: Symbol Layer
  *
@@ -193,11 +194,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case VRSN:
         SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
         return false;
-      #ifdef RGBLIGHT_ENABLE
-      case RGB_SLD:
-        rgblight_mode(1);
+      case PLON:
+        if (record->event.pressed) {
+          layer_on(STENO);
+          // send PHRO*PB - plover on
+          SEND_STRING(
+              SS_DOWN(X_E) SS_DOWN(X_R) SS_DOWN(X_F) SS_DOWN(X_V)
+              SS_DOWN(X_Y) SS_DOWN(X_I) SS_DOWN(X_K)
+              SS_UP(X_E) SS_UP(X_R) SS_UP(X_F) SS_UP(X_V)
+              SS_UP(X_Y) SS_UP(X_I) SS_UP(X_K));
+        }
         return false;
-      #endif
+      case PLOFF:
+        if (record->event.pressed) {
+          layer_off(STENO);
+          // send PHRO*F - plover off
+          SEND_STRING(
+              SS_DOWN(X_E) SS_DOWN(X_R) SS_DOWN(X_F) SS_DOWN(X_V)
+              SS_DOWN(X_Y) SS_DOWN(X_U)
+              SS_UP(X_E) SS_UP(X_R) SS_UP(X_F) SS_UP(X_V)
+              SS_UP(X_Y) SS_UP(X_U));
+        }
+        return false;
     }
   }
   return true;
