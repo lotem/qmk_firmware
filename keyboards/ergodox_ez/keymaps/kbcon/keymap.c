@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|  Tab |           | BkSp |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | MDIA | Ctrl |  Alt |  Gui | SYMB |                                       | SYMB | Left | Down |  Up  | Right|
+ *   | Ctrl |  Alt |  Del |  Ins | SYMB |                                       | SYMB | Left | Down |  Up  | Right|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | MDIA | Ctrl |       | Ctrl | MDIA |
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_EQL,       KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,     KC_GRV,
     KC_MINS,      KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
     KC_LSFT,      KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,     KC_TAB,
-    MO(MDIA),     KC_LCTL, KC_LALT,  KC_LGUI,  MO(SYMB),
+    KC_LCTL,      KC_LALT, KC_DEL,   KC_INS,   MO(SYMB),
     /**/                                                MO(MDIA), KC_LCTL,
     /**/                                                          KC_LALT,
     /**/                                  KC_LCTL, ALT_T(KC_ESC), KC_LGUI,
@@ -147,13 +147,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |SYSSLEEP|      |      |      |      |      |      |           |      |      |      |      |      |      | RESET  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      | MsUp |      |      |      |           |      |      |   7  |   8  |   9  |      |        |
+ * |        |      |      | MsUp |      |      | MwUp |           | VolUp|      |   7  |   8  |   9  | Prev |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        | App  |MsLeft|MsDown|MsRght|      |------|           |------|      |   4  |   5  |   6  |      |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      | WBak |      |           |      |      |   1  |   2  |   3  |      |        |
+ * |        |      |MsLeft|MsDown|MsRght|      |------|           |------|      |   4  |   5  |   6  | Play |        |
+ * |--------+------+------+------+------+------| MwDn |           | VolDn|------+------+------+------+------+--------|
+ * |        | Undo | App  | WBak | WFwd |      |      |           |      |      |   1  |   2  |   3  | Next |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       | Play | Prev | VolDn| VolUp| Next |
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Mclk |      |       |      | Mute |
@@ -166,19 +166,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MDIA] = LAYOUT_ergodox(
     // left hand
     KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_WH_U, KC_TRNS,
-    KC_TRNS, KC_APP,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_WBAK, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_WH_U,
+    KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
+    KC_TRNS, KC_UNDO, KC_APP,  KC_WBAK, KC_WFWD, KC_TRNS, KC_WH_D,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     /**/                                         KC_BTN3, KC_TRNS,
     /**/                                                  KC_TRNS,
     /**/                                KC_BTN1, KC_BTN2, KC_TRNS,
     // right hand
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
-    KC_TRNS, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_4,    KC_5,    KC_6,    KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_1,    KC_2,    KC_3,    KC_TRNS, KC_TRNS,
-    /**/              KC_MPLY, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+    KC_VOLU, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_MPRV, KC_TRNS,
+             KC_TRNS, KC_4,    KC_5,    KC_6,    KC_MPLY, KC_TRNS,
+    KC_VOLD, KC_TRNS, KC_1,    KC_2,    KC_3,    KC_MNXT, KC_TRNS,
+    /**/              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_MUTE,
     KC_TRNS,
     KC_TRNS, KC_DOT,  KC_0
