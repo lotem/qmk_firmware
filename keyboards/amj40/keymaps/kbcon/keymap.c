@@ -64,16 +64,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | Caps|  ~ |  " |  ( |  ) |  : |Left| Dn | Up |Rght|        |
      * |-----------------------------------------------------------|
-     * |        |  ? |Pipe|  { |  } |Pipe|  _ |  + | MS2 |MSU |MS3 |
+     * |        |  ? |Pipe|  { |  } |Pipe|  _ |  + | MS1 |MSU |MS2 |
      * |-----------------------------------------------------------|
-     * |      |     |     |           |    MS Btn 1 |MSL| MSD| MSR |
+     * |      |     |     |           |     Ins     |MSL| MSD| MSR |
      * `-----------------------------------------------------------'
      */
     [_LOWER] = LAYOUT( \
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
         KC_CAPS, KC_TILD, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
-        _______, KC_QUES, KC_PIPE, KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_MS_BTN2, KC_MS_UP, KC_MS_BTN3, \
-        _______, _______, _______, _______, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
+        _______, KC_QUES, KC_PIPE, KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_MS_BTN1, KC_MS_UP, KC_MS_BTN2, \
+        _______, _______, _______, _______, KC_INS,  KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
         ),
 
     /* Raise Layer
@@ -84,14 +84,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |  / |  \ |  [ |  ] |  \ |  - |  = |  <  |  > |    |
      * |-----------------------------------------------------------|
-     * |      |     |     |           |             |   |    |     |
+     * |      |     |     |           |     Ins     |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_RAISE] = LAYOUT( \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
         KC_CAPS, KC_GRV,  KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
         _______, KC_SLSH, KC_BSLS, KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  KC_LABK, KC_RABK, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______ \
+        _______, _______, _______, _______, KC_INS,  _______, _______, _______ \
         ),
 
     /* Adjust Layer
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * | Caps| F11| F12|Prev|Play|Next|Mute|Vol-|Vol+|    |        |
      * |-----------------------------------------------------------|
-     * |        | BR-| BR+| NK-| NK+|    |    |    | WhDn|WhUp|    |
+     * |        | BR-| BR+| NK-| NK+|    |WBak|WFwd| WhDn|WhUp|    |
      * |-----------------------------------------------------------|
      * |      |     |     |     L0    |     L1      |AGT|    |     |
      * `-----------------------------------------------------------'
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADJUST] = LAYOUT( \
         KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
         KC_CAPS, KC_F11,  KC_F12,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
-        _______, KC_BRID, KC_BRIU, NK_OFF,  NK_ON,   _______, _______, _______, KC_WH_D, KC_WH_U, _______, \
+        _______, KC_BRID, KC_BRIU, NK_OFF,  NK_ON,   _______, KC_WBAK, KC_WFWD, KC_WH_D, KC_WH_U, _______, \
         _______, _______, _______, DF(_QWERTY), DF(_TYPEWR), AG_TOGG, _______, _______ \
         ),
 
