@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "keymap_steno.h"
 #include "version.h"
 
 #define BASE 0 // default layer
@@ -15,13 +14,62 @@ enum custom_keycodes {
   EPRM = SAFE_RANGE,
 #endif
   VRSN,
+  PLON,
+  PLOFF,
 };
+
+#ifdef STENO_ENABLE
+#include "keymap_steno.h"
+#define STN_ON TG(STENO)
+#define STN_OFF TG(STENO)
+#else
+#define STN_ON PLON
+#define STN_OFF PLOFF
+#define STN_N1 KC_1
+#define STN_N2 KC_2
+#define STN_N3 KC_3
+#define STN_N4 KC_4
+#define STN_N5 KC_5
+#define STN_N6 KC_6
+#define STN_N7 KC_7
+#define STN_N8 KC_8
+#define STN_N9 KC_9
+#define STN_NA KC_0
+#define STN_NB KC_MINS
+#define STN_NC KC_EQL
+#define STN_S1 KC_Q
+#define STN_S2 KC_A
+#define STN_TL KC_W
+#define STN_KL KC_S
+#define STN_PL KC_E
+#define STN_WL KC_D
+#define STN_HL KC_R
+#define STN_RL KC_F
+#define STN_ST1 KC_T
+#define STN_ST2 KC_G
+#define STN_ST3 KC_Y
+#define STN_ST4 KC_H
+#define STN_FR KC_U
+#define STN_RR KC_J
+#define STN_PR KC_I
+#define STN_BR KC_K
+#define STN_LR KC_O
+#define STN_GR KC_L
+#define STN_TR KC_P
+#define STN_SR KC_SCLN
+#define STN_DR KC_LBRC
+#define STN_ZR KC_QUOT
+#define STN_A KC_C
+#define STN_O KC_V
+#define STN_E KC_N
+#define STN_U KC_M
+#endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   [    |   1  |   2  |   3  |   4  |   5  | STENO|           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
+ * |   [    |   1  |   2  |   3  |   4  |   5  | STN+ |           | NumLk|   6  |   7  |   8  |   9  |   0  |   ]    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |   =    |   Q  |   W  |   E  |   R  |   T  |   `  |           | Del  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -41,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox(
     // left hand
-    KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     TG(STENO),
+    KC_LBRC,      KC_1,    KC_2,     KC_3,     KC_4,    KC_5,     STN_ON,
     KC_EQL,       KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,     KC_GRV,
     KC_MINS,      KC_A,    KC_S,     KC_D,     KC_F,    KC_G,
     KC_LSFT,      KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,     KC_TAB,
@@ -62,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Stenotype
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |        |      |      |      |      |      | STN- |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   #  |   #  |   #  |   #  |   #  |      |           |      |   #  |   #  |   #  |   #  |   #  |   #    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -82,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [STENO] = LAYOUT_ergodox(
     // left hand
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   STN_OFF,
     KC_NO,   STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,  KC_NO,
     KC_NO,   STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1,
     KC_NO,   STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2, KC_NO,
@@ -193,6 +241,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case VRSN:
         SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
         return false;
+      case PLON:
+        if (record->event.pressed) {
+          layer_on(STENO);
+          // send PHRO*PB - plover on
+          SEND_STRING(
+              SS_DOWN(X_E) SS_DOWN(X_R) SS_DOWN(X_F) SS_DOWN(X_V)
+              SS_DOWN(X_Y) SS_DOWN(X_I) SS_DOWN(X_K)
+              SS_UP(X_E) SS_UP(X_R) SS_UP(X_F) SS_UP(X_V)
+              SS_UP(X_Y) SS_UP(X_I) SS_UP(X_K));
+        }
+        return false;
+      case PLOFF:
+        if (record->event.pressed) {
+          layer_off(STENO);
+          // send PHRO*F - plover off
+          SEND_STRING(
+              SS_DOWN(X_E) SS_DOWN(X_R) SS_DOWN(X_F) SS_DOWN(X_V)
+              SS_DOWN(X_Y) SS_DOWN(X_U)
+              SS_UP(X_E) SS_UP(X_R) SS_UP(X_F) SS_UP(X_V)
+              SS_UP(X_Y) SS_UP(X_U));
+        }
+        return false;
     }
   }
   return true;
@@ -203,7 +273,9 @@ void matrix_init_user(void) {
 #ifdef RGBLIGHT_COLOR_LAYER_0
   rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
 #endif
+#ifdef STENO_ENABLE
   steno_set_mode(STENO_MODE_GEMINI);
+#endif
 };
 
 // Runs whenever there is a layer state change.
