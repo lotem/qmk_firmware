@@ -60,56 +60,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Lower Layer
      * ,-----------------------------------------------------------.
-     * |  ` |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |  0 |Del |
+     * |Caps|  ! |  @ |  { |  } |Pipe|  ` |  & |  * |  ' |  " |Del |
      * |-----------------------------------------------------------|
-     * | Caps|  ` |  ' |  ( |  ) |  ; |Left| Dn | Up |Rght|    Ins |
+     * |     |  # |  $ |  ( |  ) |  ; |  : |  - |  + |  = |    Ins |
      * |-----------------------------------------------------------|
-     * |        |  / |  \ |  [ |  ] |  \ |  - |  = | MS2 |MSU |    |
+     * |        |  % |  ^ |  [ |  ] |  \ |  ~ |  _ | MS2 |MSU |MS3 |
      * |-----------------------------------------------------------|
      * |      |     |     |           |   MS Btn 1  |MSL| MSD| MSR |
      * `-----------------------------------------------------------'
      */
     [_LOWER] = LAYOUT( \
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
-        KC_CAPS, KC_GRV,  KC_QUOT, KC_LPRN, KC_RPRN, KC_SCLN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS, \
-        _______, KC_SLSH, KC_BSLS, KC_LBRC, KC_RBRC, KC_BSLS, KC_MINS, KC_EQL,  KC_MS_BTN2, KC_MS_UP, _______, \
+        KC_CAPS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, KC_GRV, KC_AMPR, KC_ASTR, KC_QUOT, KC_DQT,  KC_DEL, \
+        KC_LALT, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_SCLN, KC_COLN, KC_MINS, KC_PLUS, KC_EQL,  KC_INS, \
+        _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD, KC_UNDS, KC_MS_BTN2, KC_MS_UP, KC_MS_BTN3, \
         _______, _______, _______, _______, KC_MS_BTN1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
         ),
 
     /* Raise Layer
      * ,-----------------------------------------------------------.
-     * |  ~ |  ! |  @ |  # |  $ |  % |  ^ |  & |  * |  ( |  ) |Del |
+     * |Caps|Slep|Home| Up |End |PgUp|  + |  7 |  8 |  9 |  0 |Del |
      * |-----------------------------------------------------------|
-     * | Caps|  ~ |  " |  ( |  ) |  : |Home|PgDn|PgUp|End |    Ins |
+     * |     |App |Left|Down|Rght|PgDn|  : |  4 |  5 |  6 |  .     |
      * |-----------------------------------------------------------|
-     * |        |  ? |Pipe|  { |  } |Pipe|  _ |  + |  <  |  > |    |
+     * |        |    |    |    |    |    |  - |  1 |  2  |  3 |    |
      * |-----------------------------------------------------------|
      * |      |     |     |           |             |   |    |     |
      * `-----------------------------------------------------------'
      */
     [_RAISE] = LAYOUT( \
-        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-        KC_CAPS, KC_TILD, KC_DQT,  KC_LPRN, KC_RPRN, KC_COLN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS, \
-        _______, KC_QUES, KC_PIPE, KC_LCBR, KC_RCBR, KC_PIPE, KC_UNDS, KC_PLUS, KC_LABK, KC_RABK, _______, \
+        KC_CAPS, KC_SLEP, KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_PLUS, KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
+        KC_LALT, KC_APP,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_COLN, KC_4,    KC_5,    KC_6,    KC_DOT, \
+        _______, _______, _______, _______, _______, _______, KC_MINS, KC_1,    KC_2,    KC_3,    _______, \
         _______, _______, _______, _______, _______, _______, _______, _______ \
         ),
 
     /* Adjust Layer
      * ,-----------------------------------------------------------.
-     * | SLP| F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10|RST |
+     * | SLP| F1 | F2 | F3 | F4 | F5 | BR-| BR+|Prev|Play|Next|RST |
      * |-----------------------------------------------------------|
-     * | Caps| F11| F12|Prev|Play|Next|Mute|Vol-|Vol+|    |        |
+     * |     | F6 | F7 | F8 | F9 | F10|Mute|Vol-|Vol+|    |        |
      * |-----------------------------------------------------------|
-     * |        | BR-| BR+| NK-| NK+|    |WBak|WFwd| WhUp|WhDn|    |
+     * |        | F11| F12|PrSc|SLck|Paus| L0 | L1 | WhUp|WhDn|    |
      * |-----------------------------------------------------------|
-     * |      |     |     |     L0    |     L1      |AGT|    |     |
+     * |      |     |     |           |             |AGT|    |     |
      * `-----------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT( \
-        KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  RESET, \
-        KC_CAPS, KC_F11,  KC_F12,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
-        _______, KC_BRID, KC_BRIU, NK_OFF,  NK_ON,   _______, KC_WBAK, KC_WFWD, KC_WH_U, KC_WH_D, _______, \
-        _______, _______, _______, DF(_QWERTY), DF(_TYPEWR), AG_TOGG, _______, _______ \
+        KC_SLEP, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_BRID, KC_BRIU, KC_MPRV, KC_MNXT, KC_MPLY, RESET, \
+        KC_LALT, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
+        _______, KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, DF(_QWERTY), DF(_TYPEWR), KC_WH_U, KC_WH_D, _______, \
+        _______, _______, _______, _______, _______, AG_TOGG, _______, _______ \
         ),
 
 };
