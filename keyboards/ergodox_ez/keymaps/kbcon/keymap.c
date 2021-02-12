@@ -199,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 3: Media and navigation keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |      |      |      |      |      |      |           | RESET|      |      |      |      |      |        |
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      | RESET  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        | Sleep| Home |  Up  | End  | PgUp |      |           |      | VolUp|   7  |   8  |   9  | Prev |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -228,7 +228,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/                                                  KC_TRNS,
     /**/                                KC_WBAK, KC_WFWD, KC_TRNS,
     // right hand
-    RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,
     KC_TRNS, KC_VOLU, KC_7,    KC_8,    KC_9,    KC_MPRV, KC_TRNS,
     /**/     KC_MUTE, KC_4,    KC_5,    KC_6,    KC_MPLY, KC_TRNS,
     KC_TRNS, KC_VOLD, KC_1,    KC_2,    KC_3,    KC_MNXT, KC_TRNS,
